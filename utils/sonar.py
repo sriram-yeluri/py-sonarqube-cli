@@ -1,6 +1,6 @@
 
 class Sonar:
-    def __init__(self, username, password, url):
+    def __init__(self, username, password, baseurl):
         self.username: str = username
         self.password: str = password
-        self.url: str = url
+        self.baseurl: str = baseurl

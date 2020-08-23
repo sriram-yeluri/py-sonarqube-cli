@@ -1,6 +1,6 @@
 import argparse
 
-from utils import sonar, users
+from utils import sonar, users, groups
 
 
 def init_argument_parser(argument_list=None):
@@ -19,6 +19,7 @@ def init_argument_parser(argument_list=None):
 
     parser.add_argument('--createuser', action='store_true', default=False, help='Create sonarqube user')
 
+    parser.add_argument('--getgroups', action='store_true', default=False, help='Get sonarqube groups')
     return parser.parse_args()
 
 
@@ -26,6 +27,6 @@ if __name__ == '__main__':
     args = init_argument_parser()
     s = sonar.Sonar(args.user, args.password, args.url)
 
-    if args.user:
-        users.createuser(s)
+    if args.getgroups:
+        groups.getgroups(s)
 

@@ -4,7 +4,7 @@
 def createuser(s):
     endpoint = 'api/users/create'
     print('Create User method called')
-    print(f'{s.username}\n{s.password}\n{s.url}')
+    print(f'{s.username}\n{s.password}\n{s.baseurl}')
 
 
 def deactivateuser(s):
