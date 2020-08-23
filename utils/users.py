@@ -9,3 +9,8 @@ def createuser(s):
 
 def deactivateuser(s):
     endpoint = 'api/users/deactivate'
+
+# Get a list of active users
+def getactiveusers(s):
+    endpoint = 'api/users/search'
+
