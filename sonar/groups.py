@@ -1,15 +1,23 @@
 import logging
 
-def getgroups(s):
-    endpoint = 'api/user_groups/search'
-    try:
-        json_response = s.get_request(endpoint)
-        # TO-DO : process the json_response
-    except Exception as err:
-        logging.error(err)
+from utils.api import Api
 
-# Lists the groups a user belongs to
-def searchusersingroups(s):
-    endpoint = 'api/users/groups'
-    response = s.get_request(endpoint)
-    print(response.text)
+
+class Groups(Api):
+
+    def getgroups(self):
+        self.endpoint = 'api/user_groups/search'
+        try:
+            self._get()
+            if self.json_response is not None:
+                print(self.json_response)
+            # TO-DO : process the json_response
+        except Exception as err:
+            logging.error(err)
+
+    # Lists the groups a user belongs to
+    def searchusersingroups(self):
+        self.endpoint = 'api/users/groups'
+        self._get()
+        if self.json_response is not None:
+            print(self.json_response)
