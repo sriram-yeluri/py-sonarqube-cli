@@ -3,6 +3,7 @@ import sys
 
 from sonar.groups import Groups
 from sonar.languages import Languages
+from sonar.users import Users
 from utils.api import Api
 
 
@@ -40,8 +41,9 @@ if __name__ == '__main__':
 
     if args.getgroups:
         Groups.getgroups(api_obj)
-
     if args.getlanguages:
         Languages.getsupportedlanguages(api_obj)
+    if args.createuser:
+        Users.createuser(api_obj)
 
     sys.exit(0)
