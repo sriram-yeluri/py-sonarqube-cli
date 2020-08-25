@@ -1,5 +1,5 @@
 import logging
-
+import sys
 
 # List supported programming languages in sonarqube
 def getsupportedlanguages(s):
@@ -15,3 +15,4 @@ def getsupportedlanguages(s):
         #     print(i)
     except Exception as err:
         logging.error(err)
+        print('Check sonar-cli.log')

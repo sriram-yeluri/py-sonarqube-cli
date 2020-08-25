@@ -2,7 +2,7 @@ import requests
 import logging
 
 
-class Sonar:
+class Api:
     def __init__(self, username, password, baseurl, loglevel):
         self.username: str = username
         self.password: str = password
