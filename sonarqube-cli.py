@@ -1,6 +1,9 @@
 import argparse
+import sys
 
-from utils import sonar, users, groups, languages
+from sonar.groups import Groups
+from sonar.languages import Languages
+from utils.api import Api
 
 
 def init_argument_parser(argument_list=None):
@@ -23,17 +26,22 @@ def init_argument_parser(argument_list=None):
     parser.add_argument('--getgroups', action='store_true', default=False, help='Get sonarqube groups')
 
     parser.add_argument('--getlanguages', action='store_true', default=False, help='Get sonarqube supported languages')
-    return parser.parse_args()
+
+    flags = parser.parse_args()
+    if len(sys.argv) <= 1:
+        parser.print_help(sys.stderr)
+        sys.exit(1)
+    return flags
 
 
 if __name__ == '__main__':
     args = init_argument_parser()
-    s = sonar.Sonar(args.user, args.password, args.url, args.logLevel)
+    api_obj = Api(args.user, args.password, args.url, args.logLevel)
 
-    if args.logLevel:
-        s.loglevel = args.logLevel
     if args.getgroups:
-        groups.getgroups(s)
+        Groups.getgroups(api_obj)
 
     if args.getlanguages:
-        languages.getsupportedlanguages(s)
+        Languages.getsupportedlanguages(api_obj)
+
+    sys.exit(0)
