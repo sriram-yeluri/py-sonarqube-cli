@@ -19,18 +19,17 @@ class Api:
 
     def _get(self):
         url = f'{self.baseurl}/{self.endpoint}'
-        logging.debug(f'URL = {url}')
+        logging.info(f'URL = {url}')
         try:
             response = self.session.get(url, data=self.payload, auth=(self.username, self.password))
             logging.info(response.status_code)
             self.json_response = response.json()
         except Exception as err:
             logging.error(err)
-            print('Check sonar-cli.log')
 
     def _post(self):
         url = f'{self.baseurl}/{self.endpoint}'
-        logging.debug(f'URL = {url}')
+        logging.info(f'URL = {url}')
         payload = ""
         try:
             response = self.session.post(url, data=payload, auth=(self.username, self.password))
@@ -38,4 +37,3 @@ class Api:
             self.json_response = response.json()
         except Exception as err:
             logging.error(err)
-            print('Check sonar-cli.log')
