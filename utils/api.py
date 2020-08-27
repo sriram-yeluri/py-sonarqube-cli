@@ -1,5 +1,6 @@
 import requests
 import logging
+import json
 
 
 class Api:
@@ -12,10 +13,11 @@ class Api:
         self.endpoint = None
         self.payload = None
         self.loglevel: str = loglevel
-        logging.basicConfig(format='%(levelname)s %(asctime)s : [%(filename)s:%(lineno)s - %(funcName)20s() ] %(message)s',
-                            datefmt='%m/%d/%Y %I:%M:%S %p',
-                            level=getattr(logging, self.loglevel),
-                            filename='sonar-cli.log')
+        logging.basicConfig(
+            format='%(levelname)s %(asctime)s : [%(filename)s:%(lineno)s - %(funcName)20s() ] %(message)s',
+            datefmt='%m/%d/%Y %I:%M:%S %p',
+            level=getattr(logging, self.loglevel),
+            filename='sonar-cli.log')
 
     def _get(self):
         url = f'{self.baseurl}/{self.endpoint}'
@@ -27,12 +29,23 @@ class Api:
         except Exception as err:
             logging.error(err)
 
-    def _post(self):
+    def _post_params(self):
         url = f'{self.baseurl}/{self.endpoint}'
         logging.info(f'URL = {url}')
-        payload = ""
+        headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
         try:
-            response = self.session.post(url, data=payload, auth=(self.username, self.password))
+            response = self.session.post(url, params=self.payload, auth=(self.username, self.password), headers=headers)
+            logging.info(response.status_code)
+            self.json_response = response.json()
+        except Exception as err:
+            logging.error(err)
+
+    def _post_json(self):
+        url = f'{self.baseurl}/{self.endpoint}'
+        logging.info(f'URL = {url}')
+        headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
+        try:
+            response = self.session.post(url, json=self.payload, auth=(self.username, self.password), headers=headers)
             logging.info(response.status_code)
             self.json_response = response.json()
         except Exception as err:
