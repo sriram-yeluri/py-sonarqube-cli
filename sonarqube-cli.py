@@ -4,7 +4,6 @@ import sys
 from sonar.groups import Groups
 from sonar.languages import Languages
 from sonar.users import Users
-from utils.api import Api
 
 
 def init_argument_parser(argument_list=None):
@@ -42,7 +41,5 @@ if __name__ == '__main__':
         Groups(args.user, args.password, args.url, args.logLevel).getgroups()
     if args.getlanguages:
         Languages(args.user, args.password, args.url, args.logLevel).getsupportedlanguages()
-    if args.createuser:
-        Users(args.user, args.password, args.url, args.logLevel).createuser()
 
     sys.exit(0)
