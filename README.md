@@ -24,3 +24,11 @@ optional arguments:
 
 ### References
 [Sonarqube Web API](http://localhost:9000/web_api)
+[packaging-python-projects](https://packaging.python.org/tutorials/packaging-projects/)
+[the-hitchhikers-guide-to-packaging](https://the-hitchhikers-guide-to-packaging.readthedocs.io/en/latest/quickstart.html)
+
+### Help
+
+```sh
+python3 -m pip install requests
+```

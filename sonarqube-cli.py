@@ -1,9 +1,9 @@
 import argparse
 import sys
 
-from sonar.groups import Groups
-from sonar.languages import Languages
-from sonar.users import Users
+from services.groups import Groups
+from services.languages import Languages
+from utils.config import Config
 
 
 def init_argument_parser(argument_list=None):
@@ -34,12 +34,17 @@ def init_argument_parser(argument_list=None):
     return flags
 
 
-if __name__ == '__main__':
+def main():
     args = init_argument_parser()
+    config = Config()
+    config.set_args(args)
 
     if args.getgroups:
-        Groups(args.user, args.password, args.url, args.logLevel).getgroups()
+        Groups(config).getgroups()
     if args.getlanguages:
-        Languages(args.user, args.password, args.url, args.logLevel).getsupportedlanguages()
+        Languages(config).getsupportedlanguages()
 
+
+if __name__ == '__main__':
+    main()
     sys.exit(0)

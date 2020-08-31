@@ -1,4 +1,4 @@
-from utils.api import Api
+from utils import Api
 import logging
 
 
@@ -10,7 +10,7 @@ class Users(Api):
         data = {'login': login, 'name': f'{f_name}{l_name}', 'password': password, 'email': email}
         self.payload = data
         self._post_params()
-        if self.json_response is not None:
+        if not self.json_response:
             logging.info(self.json_response)
 
     def deactivateuser(self, login: str):
@@ -18,7 +18,7 @@ class Users(Api):
         data = {'login': login}
         self.payload = data
         self._post_params()
-        if self.json_response is not None:
+        if not self.json_response:
             logging.info(self.json_response)
 
     # Get a list of active users
