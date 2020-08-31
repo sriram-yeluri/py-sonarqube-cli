@@ -3,6 +3,7 @@ import sys
 
 from services.groups import Groups
 from services.languages import Languages
+from services.templates import Templates
 from utils.config import Config
 
 
@@ -27,6 +28,11 @@ def init_argument_parser(argument_list=None):
 
     parser.add_argument('--getlanguages', action='store_true', default=False, help='Get sonarqube supported languages')
 
+    parser.add_argument('-templateName','--templateName', action='store',default=None,
+                        required=False,help='Permission Template Name')
+
+    parser.add_argument('--createTemplate',action='store_true',default=False,help='Create Permission Template')
+
     flags = parser.parse_args()
     if len(sys.argv) <= 1:
         parser.print_help(sys.stderr)
@@ -43,6 +49,8 @@ def main():
         Groups(config).getgroups()
     if args.getlanguages:
         Languages(config).getsupportedlanguages()
+    if args.createTemplate:
+        Templates(config).createtemplate()
 
 
 if __name__ == '__main__':
