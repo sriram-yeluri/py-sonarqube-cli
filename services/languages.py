@@ -12,7 +12,7 @@ class Languages(Api):
         try:
             # self.json_response = self._get()
             self._get()
-            if self.json_response is not None:
+            if self.json_response:
                 languages = self.json_response['languages']
                 for technology in languages:
                     supported_technologies.append(technology['name'])
@@ -21,4 +21,4 @@ class Languages(Api):
             #     print(i)
         except Exception as err:
             logging.error(err)
-            print('Check sonar-cli.log')
+            print('Check sonarqube-cli.log')
