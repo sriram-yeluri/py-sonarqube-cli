@@ -11,6 +11,7 @@ class Config:
         self.password = None
         self.url = None
         self.loglevel: str = 'INFO'
+        self.template_name = ''
 
     def _logging(self):
         logging.basicConfig(
@@ -24,4 +25,5 @@ class Config:
         self.password = args.password
         self.url = args.url
         self.loglevel = args.logLevel
+        self.template_name = args.templateName
 
