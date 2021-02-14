@@ -28,7 +28,8 @@ def init_argument_parser(argument_list=None):
 
     parser.add_argument('--getlanguages', action='store_true', default=False, help='Get sonarqube supported languages')
 
-    parser.add_argument('-templateName', '--templateName', action='store', default=None, required=False, help='Permission Template Name')
+    parser.add_argument('-templateName', '--templateName', action='store', default=None,
+                        required=False, help='Permission Template Name')
 
     parser.add_argument('--createTemplate', action='store_true', default=False, help='Create Permission Template')
 
