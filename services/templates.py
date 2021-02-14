@@ -1,5 +1,4 @@
 from utils.api import Api
-from utils.config import Config
 import logging
 import sys
 

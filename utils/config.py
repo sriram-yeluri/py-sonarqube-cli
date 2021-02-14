@@ -26,4 +26,3 @@ class Config:
         self.url = args.url
         self.loglevel = args.logLevel
         self.template_name = args.templateName
-

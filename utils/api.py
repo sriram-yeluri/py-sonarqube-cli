@@ -4,7 +4,7 @@ import logging
 
 class Api:
     def __init__(self, config):
-        self.auth = (config.user,config.password)
+        self.auth = (config.user, config.password)
         self.baseurl: str = config.url
         self.template_name = config.template_name
 
